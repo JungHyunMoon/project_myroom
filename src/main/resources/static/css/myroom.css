@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+#wrap {
+	width: 100%;
+	height: 100%;
+	background-color: #F0EBEB;
+	height: 100%;
+	background-color: #F0EBEB;
+}
+
+a {
+	text-decoration: none !important
+}
+
+.login-right {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 50px;
+}
+
+.access-box {
+	width: 500px;
+	min-height: 350px;
+	background: rgba(0, 0, 0, 0.02);
+	border: 1px solid #000000;
+}
+
+.sign-up-box {
+	width: 500px;
+	height: 100px;
+	background: rgba(0, 0, 0, 0.01);
+	border: 1px solid #000000;
+}
+
+.password, .eye , .check-btn{
+	border-radius: 0px;
+}
+
+
+.logo-text {
+	font-family: 'Inter';
+	font-style: italic;
+	font-weight: 800;
+	font-size: 40px;
+	line-height: 48px;
+	color: #599591;
+}
