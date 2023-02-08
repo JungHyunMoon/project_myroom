@@ -6,7 +6,7 @@
 			<p class="logo-text">MyRoom</p>
 			<i>방을 구할때도? 내놓을때도? 마이룸~!</i>
 		</div>
-		<form id="signInForm" method="post" action="/myroom/sign_in">
+		<form id="signInForm" method="post" action="/sign_in">
 			<div class="login d-flex justify-content-center">
 				<div class="form-group col-8">
 					<input type="text" id="loginId" name="loginId" class="form-control mt-3" placeholder="아이디">
@@ -26,7 +26,33 @@
 </div>
 
 <script>
-// 	$(document).ready(function() {
-// 		$('#signInForm').submit()
-// 	});
+	$(document).ready(function() {
+		$('#signInForm').on('submit', function(e) {
+			e.preventDefault();
+			// validation
+			let loginId = $('#loginId').val().trim();
+			let password = $('#password').val().trim();
+
+			if (loginId == "") {
+				alert("아이디를 입력해 주세요.");
+				return false;
+			}
+			if (password == "") {
+				alert("비밀번호를 입력해 주세요.");
+				return false;
+			}
+			
+			let url = $(this).attr('action');
+			let signInParams = $(this).serialize();
+			
+			$.post(url, signInParams)		// request
+			.done(function(data) {	// response
+				if (data.code == 1) {	// 성공
+					document.location.href="/myroom/user/map";			
+				} else {	// 실패
+					alert(data.errorMessage);
+				}
+			});
+		});
+	});
 </script>

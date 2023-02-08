@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.myroom.realtor.dao.RealtorDAO">
+	<insert id="insertRealtor" parameterType="map">
+		INSERT INTO `realtor`
+		(
+			`loginId`
+			, `password`
+			, `name`
+			, `registerId`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{loginId}
+			, #{hashedPassword}
+			, #{name}
+			, #{registerId}
+			, #{email}
+			, NOW()
+			, NOW()
+		)
+	</insert>
+	<select id=""></select>
+</mapper>

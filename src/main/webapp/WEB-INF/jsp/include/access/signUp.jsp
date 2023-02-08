@@ -12,12 +12,12 @@
 			<label class="d-none" id="switchRealtor" for="flexSwitchCheck">중개인</label>
 		</div>
 		<!-- 일반 유저 회원가입 -->
-		<form class="signInFormUser" method="post" action="/myroom/sign_up">
+		<form class="signUpFormUser" method="post" action="/sign_up_user">
 			<div class="login d-flex justify-content-center">
 				<div class="form-group col-8">
-					<input type="text" name="loginId" class="loginId form-control mt-1" placeholder="아이디">
+					<input type="text" id="userLoginId" name="loginId" class="loginId form-control mt-1" placeholder="아이디">
 					<div class="input-group mt-2">
-						<input type="password" name="password" class="password form-control" placeholder="비밀번호">
+						<input type="password" id="userPassword" name="password" class="password form-control" placeholder="비밀번호">
 						<div class="input-group-append">
 							<button type="button" class="eye form-control">
 								<i class="fa fa-eye-slash fa-lg"></i>
@@ -25,7 +25,7 @@
 						</div>
 					</div>
 					<div class="input-group mt-2">
-						<input type="password" name="password" class="password-confirm form-control" placeholder="비밀번호 확인">
+						<input type="password" id="userPasswordConfirm" name="password-confirm" class="password-confirm form-control" placeholder="비밀번호 확인">
 						<div class="input-group-append">
 							<button type="button" class="eye form-control">
 								<i class="fa fa-eye-slash fa-lg"></i>
@@ -33,7 +33,10 @@
 						</div>
 					</div>
 					<div class="mt-2">
-						<input type="email" name="email" class="email form-control" placeholder="이메일">
+						<input type="text" id="userName" name="name" class="name form-control" placeholder="이름">
+					</div>
+					<div class="mt-2">
+						<input type="email" id="userEmail" name="email" class="email form-control" placeholder="이메일">
 					</div>
 					
 					<button type="submit" class="btn btn-info border-radius mt-2 w-100">회원가입</button>
@@ -45,22 +48,22 @@
 		</form>
 		
 		<!-- 중개사 회원가입 -->
-		<form class="signInFormRealtor d-none" method="post" action="/myroom/sign_up">
+		<form class="signUpFormRealtor d-none" method="post" action="/sign_up_realtor">
 			<div class="login d-flex justify-content-center">
 				<div class="form-group col-8">
-					<input type="text" name="name" class="name form-control" placeholder="중개인 이름">
+					<input type="text" id="realtorName" name="name" class="name form-control" placeholder="중개인 이름">
 					<div class="input-group my-1">
-						<input type="text" name="office" class="office form-control" placeholder="법정 사무실 이름">
+						<input type="text" id="registerNumber" name="registerNumber" class="registerNumber form-control" data-certified=false placeholder="법정 등록번호">
 						<div class="input-group-append">
-							<button type="button" class="eye form-control">
+							<button type="button" class="registerNumberConfirm form-control">
 								확인
 							</button>
 						</div>
 					</div>
 					
-					<input type="text" name="loginId" class="loginId form-control mt-1" placeholder="아이디">
+					<input type="text" id="realtorLoginId" name="loginId" class="loginId form-control mt-1" placeholder="아이디">
 					<div class="input-group my-1">
-						<input type="password" name="password" class="password form-control" placeholder="비밀번호">
+						<input type="password" id="realtorPassword" name="password" class="password form-control" placeholder="비밀번호">
 						<div class="input-group-append">
 							<button type="button" class="eye form-control">
 								<i class="fa fa-eye-slash fa-lg"></i>
@@ -68,15 +71,15 @@
 						</div>
 					</div>
 					<div class="input-group my-1">
-						<input type="password" name="password" class="password-confirm form-control" placeholder="비밀번호 확인">
+						<input type="password" id="realtorPasswordConfirm" name="password" class="password-confirm form-control" placeholder="비밀번호 확인">
 						<div class="input-group-append">
 							<button type="button" class="eye form-control">
 								<i class="fa fa-eye-slash fa-lg"></i>
 							</button>
 						</div>
 					</div>
-					<div class="mt-2">
-						<input type="email" name="email" class="email form-control" placeholder="이메일">
+					<div class="my-1">
+						<input type="email" id="realtorEmail" name="email" class="email form-control" placeholder="이메일">
 					</div>
 					
 					<button type="submit" class="btn btn-info border-radius mt-2 w-100">회원가입</button>
@@ -103,15 +106,14 @@
 			if ($('#switchRealtor').attr('class') == 'd-none') {
 				$('#switchRealtor').removeClass('d-none');	
 				$('#switchUser').addClass('d-none');
-				$('.signInFormRealtor').removeClass('d-none');	
-				$('.signInFormUser').addClass('d-none');
+				$('.signUpFormRealtor').removeClass('d-none');	
+				$('.signUpFormUser').addClass('d-none');
 			} else {
 				$('#switchUser').removeClass('d-none');	
 				$('#switchRealtor').addClass('d-none');	
-				$('.signInFormUser').removeClass('d-none');
-				$('.signInFormRealtor').addClass('d-none');	
+				$('.signUpFormUser').removeClass('d-none');
+				$('.signUpFormRealtor').addClass('d-none');	
 			}
-			
 		});
 		
 		// toggleClass 로 간단하게
@@ -124,6 +126,150 @@
 	        	inputTag.attr('type', 'password')
 	        }
 	    });
+		
+		$('.signUpFormUser').on('submit', function(e) {
+			e.preventDefault();
+			let loginId = $('#userLoginId').val().trim();
+			let password = $('#userPassword').val();
+			let passwordConfirm = $('#userPasswordConfirm').val();
+			let name = $('#userName').val().trim();
+			let email = $('#userEmail').val().trim();
+			
+			if (loginId == "") {
+				alert("아이디를 입력해 주세요.");
+				return false;
+			}
+			if (password == "") {
+				alert("비밀번호를 입력해 주세요.");
+				return false;
+			}
+			
+			if (password != passwordConfirm) {
+				alert("비밀번호가 다릅니다.");
+				return false;
+			}
+			
+			if (name == "") {
+				alert("계정이름을 입력해 주세요.");
+				return false;
+			}
+			if (email == "") {
+				alert("이메일을 입력해 주세요.");
+				return false;
+			}
+			
+			let url = $(this).attr('action');
+			console.log(url);
+			let params = $(this).serialize();
+			console.log(params);
+
+			$.post(url, params)		// request
+			.done(function(data) {	// response
+				if (data.code == 1) {	// 성공
+					alert("안녕하세요!")
+					location.href="/myroom/sign_in";			
+				} else {	// 실패
+					alert("회원 가입에 실패하였습니다.");
+				}
+			});
+		});
+		
+		$('.registerNumberConfirm').on('click', function() {
+			let realtorName = $('#realtorName').val().trim();
+			let registerNumber = $('#registerNumber').val();
+// 			let dataCertified = $(this).parent().prev().attr("data-certified");
+			
+			if (realtorName == "") {
+				alert("이름을 입력해 주세요.");
+				return false;
+			}
+			if (registerNumber == "") {
+				alert("등록번호를 입력해 주세요.");
+				return false;
+			}
+			
+			$.ajax({
+				type:"POST"
+				, url:"/isRegisterd"
+				, data: {"realtorName":realtorName, "registerNumber":registerNumber}
+			
+				,success : function(data) {
+					console.log(data);
+					if (data.result > 0) {
+						alert("인증되었습니다")
+						$('#registerNumber').data("certified", true);
+						alert($('#registerNumber').data("certified"));
+						
+					} else if (data.result == 0) {
+						alert("등록되지 않은 번호입니다.")
+						$('#registerNumber').data("certified", false);
+						alert($('#registerNumber').data("certified"));
+					}
+				}
+			});
+		});
+		
+		$('.signUpFormRealtor').on('submit', function(e) {
+			e.preventDefault();
+			let realtorName = $('#realtorName').val().trim();
+			let realtorRegisterNumber = $('#realtorRegisterNumber').val();
+			let isCertified = $('#registerNumber').data("certified");
+			let realtorLoginId = $('#realtorLoginId').val().trim();
+			let realtorPassword = $('#realtorPassword').val();
+			let realtorPasswordConfirm = $('#realtorPasswordConfirm').val();
+			let realtorEmail = $('#realtorEmail').val().trim();
+			
+			if (realtorName == "") {
+				alert("이름을 입력해 주세요.");
+				return false;
+			}
+			
+			if (realtorRegisterNumber == "") {
+				alert("등록번호를 입력해 주세요.");
+				return false;
+			}
+			
+			if (isCertified == false) {
+				alert("등록번호 인증을 완료해주세요.");
+				return false;
+			}
+			
+			if (realtorLoginId == "") {
+				alert("아이디를 입력해 주세요.");
+				return false;
+			}
+			
+			if (realtorPassword == "") {
+				alert("비밀번호를 입력해 주세요.");
+				return false;
+			}
+			
+			if (realtorPassword != realtorPasswordConfirm) {
+				alert("비밀번호가 일치하지 않습니다");
+				return false;
+			}
+			
+			if (realtorEmail == "") {
+				alert("이메일을 입력해 주세요.");
+				return false;
+			}
+			
+			let url = $(this).attr('action');
+			let params = $(this).serialize();
+			console.log(url);
+			console.log(params);
+
+			$.post(url, params)		// request
+			.done(function(data) {	// response
+				if (data.code == 1) {	// 성공
+					alert("안녕하세요!")
+					location.href="/myroom/sign_in";			
+				} else {	// 실패
+					alert("회원 가입에 실패하였습니다.");
+				}
+			});
+			
+		});
 
 	});
 </script>

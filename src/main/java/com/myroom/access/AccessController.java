@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/myroom")
 public class AccessController {
 
-	@GetMapping("sign_in")
+	@GetMapping("/sign_in")
 	public String signInView(
 			Model model) {
 		model.addAttribute("title", "로그인");
@@ -18,7 +18,7 @@ public class AccessController {
 		return "/template/accessLayout";
 	}
 	
-	@GetMapping("sign_up")
+	@GetMapping("/sign_up")
 	public String signUpView(
 			Model model) {
 		model.addAttribute("title", "회원가입");
@@ -26,7 +26,7 @@ public class AccessController {
 		return "/template/accessLayout";
 	}
 	
-	@GetMapping("find_my_id")
+	@GetMapping("/find_my_id")
 	public String findIdView(
 			Model model) {
 		model.addAttribute("title", "계정 찾기");
