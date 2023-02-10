@@ -17,7 +17,7 @@
 		VALUES
 		(
 			#{loginId}
-			, #{hashedPassword}
+			, #{encodedPassword}
 			, #{name}
 			, #{registerId}
 			, #{email}
@@ -25,5 +25,35 @@
 			, NOW()
 		)
 	</insert>
-	<select id=""></select>
+	<select id="selectRealtorByLoginIdPassword" parameterType="map" resultType="com.myroom.realtor.model.Realtor">
+		SELECT
+			`id`
+			, `loginId`
+			, `password`
+			, `name`
+			, `registerId`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`realtor`
+		WHERE
+			`loginId` = #{loginId} AND
+			`password` = #{encodedPassword}
+	</select>
+	<select id="selectRealtorByLoginId" parameterType="map" resultType="com.myroom.realtor.model.Realtor">
+		SELECT
+			`id`
+			, `loginId`
+			, `password`
+			, `name`
+			, `registerId`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`realtor`
+		WHERE
+			`loginId` = #{loginId}
+	</select>
 </mapper>

@@ -25,4 +25,5 @@ public class EncryptUtils {
 		}
 		return encData;
 	}
+	
 }

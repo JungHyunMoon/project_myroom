@@ -14,7 +14,7 @@ public interface UserDAO {
 	
 	public void insertUser(
 			@Param("loginId") String loginId, 
-			@Param("hashedPassword")String hashedPassword, 
+			@Param("hashedPassword") String hashedPassword, 
 			@Param("name")String name,
 			@Param("email")String email);
 }

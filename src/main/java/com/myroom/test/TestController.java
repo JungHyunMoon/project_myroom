@@ -1,13 +1,13 @@
 package com.myroom.test;
 
-import java.util.Map;
-
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.myroom.agent.bo.AgentBO;
+import com.myroom.api.OpenApiRealtorOffice;
+import com.myroom.realtor.bo.RealtorBO;
 import com.myroom.test.bo.TestBO;
 
 @Controller
@@ -16,7 +16,9 @@ public class TestController {
 	@Autowired
 	private TestBO testBO;
 	@Autowired
-	private AgentBO agentBO;
+	private RealtorBO agentBO;
+	@Autowired
+	private OpenApiRealtorOffice openApiRealtorOffice;
 	
 	@ResponseBody
 	@RequestMapping("/test1")
@@ -26,10 +28,10 @@ public class TestController {
 	
 	@ResponseBody
 	@RequestMapping("/test2")
-	public Map<String, Object> helloJSON() {
-		String registerNumber = "나92200000-51";
-		String name = "강정식";
-		Map<String, Object> result = agentBO.callApiHttp(registerNumber, name);
+	public JSONObject helloJSON() {
+		String registerNumber = "123123";
+		String name = "문정현";
+		JSONObject result = openApiRealtorOffice.isRegisteredNumber(name, registerNumber);
 		
 		return result;
 	}
