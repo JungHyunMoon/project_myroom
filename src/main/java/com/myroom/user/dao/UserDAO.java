@@ -3,6 +3,7 @@ package com.myroom.user.dao;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import com.myroom.realtor.model.Realtor;
 import com.myroom.user.model.User;
 
 @Repository
@@ -17,4 +18,6 @@ public interface UserDAO {
 			@Param("hashedPassword") String hashedPassword, 
 			@Param("name")String name,
 			@Param("email")String email);
+	
+	public User selectUserByLoginId(String loginId);
 }
