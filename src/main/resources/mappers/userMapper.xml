@@ -39,4 +39,18 @@
 			, NOW()
 		)
 	</insert>
+	<select id="selectUserByLoginId" parameterType="String" resultType="com.myroom.user.model.User">
+		SELECT
+			`id`
+			, `loginId`
+			, `password`
+			, `name`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`user`
+		WHERE
+			`loginId` = #{loginId}
+	</select>
 </mapper>

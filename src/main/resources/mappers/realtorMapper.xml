@@ -41,7 +41,7 @@
 			`loginId` = #{loginId} AND
 			`password` = #{encodedPassword}
 	</select>
-	<select id="selectRealtorByLoginId" parameterType="map" resultType="com.myroom.realtor.model.Realtor">
+	<select id="selectRealtorByLoginId" parameterType="String" resultType="com.myroom.realtor.model.Realtor">
 		SELECT
 			`id`
 			, `loginId`
