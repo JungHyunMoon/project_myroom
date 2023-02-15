@@ -57,13 +57,11 @@ public class AccessRestController {
 	@PostMapping("/sign_in_realtor")
 	public Map<String, Object> signInRealtor(
 			@RequestParam("loginId") String loginId,
-			@RequestParam("password") CharSequence password,
+			@RequestParam("password") String password,
 			Model model) {
 		
 		String realtorPassword = realtorBO.getRealtorPasswordByLoginId(loginId);
 		boolean isMatches = passwordEncoder.matches(password, realtorPassword);
-		
-//		boolean realtor = realtorBO.isMatchesPassword(loginId, password);
 		
 		Map<String, Object> result = new HashMap<>();
 		if (isMatches == true) {
@@ -101,20 +99,6 @@ public class AccessRestController {
 		return result;
 	}
 	
-	@PostMapping("/isRegisterd")
-	public Map<String, Object> isRegisterd(
-			@RequestParam("realtorName") String realtorName,
-			@RequestParam("registerNumber") String registerNumber
-			) {
-		
-		Map<String, Object> result = new HashMap<>();
-		
-		int totalCount = accessBO.getRealtorTotalCount(realtorName, registerNumber);
-		result.put("result", totalCount);
-		
-		return result;
-	}
-	
 	@PostMapping("/sign_up_realtor")
 	public Map<String, Object> signUpRealtor(
 			@RequestParam("loginId") String loginId,
@@ -130,6 +114,33 @@ public class AccessRestController {
 		Map<String, Object> result = new HashMap<>();
 		result.put("code", 1);
 		result.put("result", "성공");
+		
+		return result;
+	}
+	
+	@PostMapping("/isRegisterdRealtor")
+	public Map<String, Object> isRegisterdRealtor(
+			@RequestParam("realtorName") String realtorName,
+			@RequestParam("registerNumber") String registerNumber
+			) {
+		
+		Map<String, Object> result = new HashMap<>();
+		
+		int totalCount = accessBO.getRealtorTotalCount(realtorName, registerNumber);
+		result.put("result", totalCount);
+		
+		return result;
+	}
+	
+	@PostMapping("/isAlreadyExistId")
+	public Map<String, Object> isAlreadyExistId(
+			@RequestParam("loginId") String loginId
+			) {
+		boolean isRegisterdId = accessBO.isAlreadyExistId(loginId);
+		
+		Map<String, Object> result = new HashMap<>();
+		
+		result.put("result", isRegisterdId);
 		
 		return result;
 	}
