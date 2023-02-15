@@ -15,7 +15,14 @@
 		<form class="signUpFormUser" method="post" action="/sign_up_user">
 			<div class="login d-flex justify-content-center">
 				<div class="form-group col-8">
-					<input type="text" id="userLoginId" name="loginId" class="loginId form-control mt-1" placeholder="아이디">
+					<div class="input-group my-1">
+						<input type="text" id="userLoginId" name="loginId" class="loginId form-control"  data-certified=false placeholder="아이디">
+						<div class="input-group-append">
+							<button type="button" class="check-btn form-control">
+								중복확인
+							</button>
+						</div>
+					</div>
 					<div class="input-group mt-2">
 						<input type="password" id="userPassword" name="password" class="password form-control" placeholder="비밀번호">
 						<div class="input-group-append">
@@ -25,7 +32,7 @@
 						</div>
 					</div>
 					<div class="input-group mt-2">
-						<input type="password" id="userPasswordConfirm" name="password-confirm" class="password-confirm form-control" placeholder="비밀번호 확인">
+						<input type="password" id="userPasswordConfirm" name="passwordConfirm" class="password-confirm form-control" placeholder="비밀번호 확인">
 						<div class="input-group-append">
 							<button type="button" class="eye form-control">
 								<i class="fa fa-eye-slash fa-lg"></i>
@@ -60,8 +67,14 @@
 							</button>
 						</div>
 					</div>
-					
-					<input type="text" id="realtorLoginId" name="loginId" class="loginId form-control mt-1" placeholder="아이디">
+					<div class="input-group my-1">
+						<input type="text" id="realtorLoginId" name="loginId" class="loginId form-control"  data-certified=false placeholder="아이디">
+						<div class="input-group-append">
+							<button type="button" class="check-btn form-control">
+								중복확인
+							</button>
+						</div>
+					</div>
 					<div class="input-group my-1">
 						<input type="password" id="realtorPassword" name="password" class="password form-control" placeholder="비밀번호">
 						<div class="input-group-append">
@@ -71,7 +84,7 @@
 						</div>
 					</div>
 					<div class="input-group my-1">
-						<input type="password" id="realtorPasswordConfirm" name="password" class="password-confirm form-control" placeholder="비밀번호 확인">
+						<input type="password" id="realtorPasswordConfirm" name="passwordConfirm" class="password-confirm form-control" placeholder="비밀번호 확인">
 						<div class="input-group-append">
 							<button type="button" class="eye form-control">
 								<i class="fa fa-eye-slash fa-lg"></i>
@@ -127,9 +140,31 @@
 	        }
 	    });
 		
+		$('.check-btn').on('click', function(e) {
+			e.preventDefault();
+			let loginId = $(this).parent().prev().val().trim();
+			$.ajax({
+				type:"POST"
+				, url:"/isAlreadyExistId"
+				, data: {"loginId":loginId}
+				, context: this
+				
+				, success : function(data) {
+					if (data.result == true) {
+						alert("이미 존재하는 아이디입니다.");
+						$(this).parent().prev().empty();
+					} else if (data.result == false) {
+						alert("가입 가능한 아이디입니다.");
+						$(this).parent().prev().data("certified", true);
+					}
+				}
+			})
+		});
+		
 		$('.signUpFormUser').on('submit', function(e) {
 			e.preventDefault();
 			let loginId = $('#userLoginId').val().trim();
+			let loginIdConfirm = $('#userLoginId').data('certified');
 			let password = $('#userPassword').val();
 			let passwordConfirm = $('#userPasswordConfirm').val();
 			let name = $('#userName').val().trim();
@@ -139,16 +174,18 @@
 				alert("아이디를 입력해 주세요.");
 				return false;
 			}
+			if (loginIdConfirm == "") {
+				alert("아이디 중복확인을 해주세요.");
+				return false;
+			}
 			if (password == "") {
 				alert("비밀번호를 입력해 주세요.");
 				return false;
 			}
-			
 			if (password != passwordConfirm) {
 				alert("비밀번호가 다릅니다.");
 				return false;
 			}
-			
 			if (name == "") {
 				alert("계정이름을 입력해 주세요.");
 				return false;
@@ -177,7 +214,6 @@
 		$('.registerNumberConfirm').on('click', function() {
 			let realtorName = $('#realtorName').val().trim();
 			let registerNumber = $('#registerNumber').val();
-// 			let dataCertified = $(this).parent().prev().attr("data-certified");
 			
 			if (realtorName == "") {
 				alert("이름을 입력해 주세요.");
@@ -190,20 +226,17 @@
 			
 			$.ajax({
 				type:"POST"
-				, url:"/isRegisterd"
+				, url:"/isRegisterdRealtor"
 				, data: {"realtorName":realtorName, "registerNumber":registerNumber}
 			
-				,success : function(data) {
-					console.log(data);
+				, success : function(data) {
 					if (data.result > 0) {
 						alert("인증되었습니다")
 						$('#registerNumber').data("certified", true);
-						alert($('#registerNumber').data("certified"));
 						
 					} else if (data.result == 0) {
 						alert("등록되지 않은 번호입니다.")
 						$('#registerNumber').data("certified", false);
-						alert($('#registerNumber').data("certified"));
 					}
 				}
 			});
@@ -256,8 +289,6 @@
 			
 			let url = $(this).attr('action');
 			let params = $(this).serialize();
-			console.log(url);
-			console.log(params);
 
 			$.post(url, params)		// request
 			.done(function(data) {	// response
