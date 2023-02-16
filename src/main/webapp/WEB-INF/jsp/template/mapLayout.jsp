@@ -41,10 +41,10 @@
 		</header>
 		<section class="d-flex">
 			<div class="section-left">
-				<jsp:include page="../include/basicUser/${leftViewName}.jsp"></jsp:include>
+				<jsp:include page="../include/realEstate/${leftViewName}.jsp"></jsp:include>
 			</div>
 			<div class="section-rigth">
-				<jsp:include page="../include/basicUser/${rightViewName}.jsp"></jsp:include>
+				<jsp:include page="../include/realEstate/${rightViewName}.jsp"></jsp:include>
 			</div>
 		</section>
 	</div>

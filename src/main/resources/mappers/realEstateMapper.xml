@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.myroom.realEstate.dao.RealEstateDAO">
+	<select id="getRealEstateList" resultType="com.myroom.realEstate.model.RealEstate">
+		SELECT
+			`id`
+			,`userId`
+			,`sales_type`
+			,`service_type`
+			,`sales_price`
+			,`deposit`
+			,`monthRentPrice`
+			,`area`
+			,`address`
+			,`jibunAddress`
+			,`local1`
+			,`local2`
+			,`local3`
+			,`local4`
+			,`title`
+			,`residence_type`
+			,`description`
+			,`agent_comment`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`real_estate`
+	</select>
+	<select id="getRealEstateInfoByLocal2" parameterType="String" resultType="com.myroom.realEstate.model.RealEstate">
+		SELECT
+			`id`
+			,`userId`
+			,`sales_type`
+			,`service_type`
+			,`sales_price`
+			,`deposit`
+			,`monthRentPrice`
+			,`area`
+			,`address`
+			,`jibunAddress`
+			,`local1`
+			,`local2`
+			,`local3`
+			,`local4`
+			,`title`
+			,`residence_type`
+			,`description`
+			,`agent_comment`
+		FROM
+			`real_estate`
+		WHERE
+			`local3` = #{local3}
+	</select>
+</mapper>
