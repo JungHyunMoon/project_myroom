@@ -69,12 +69,7 @@ public class AccessRestController {
 			result.put("result", "성공");
 		} else {
 			result.put("code", 500);
-			result.put("errorMessage", "중개인의 아이디 또는 비밀번호를 확인하세요."
-			+ "\n" + password
-			+ "\n" + isMatches
-			+ "\n" + realtorPassword
-			);
-//			result.put("errorMessage", "중개인의 아이디 또는 비밀번호를 확인하세요.");
+			result.put("errorMessage", "중개인의 아이디 또는 비밀번호를 확인하세요.");
 		};
 		
 		

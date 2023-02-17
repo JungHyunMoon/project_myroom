@@ -14,6 +14,17 @@
 	
 	var geocoder = new kakao.maps.services.Geocoder();
 	
+	var setCenter = "${keyword}";
+	
+	var callback = function(result, status) {
+	    if (status === kakao.maps.services.Status.OK) {
+	    	coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	    	map.setCenter(coords);
+	    }
+	};
+
+	geocoder.addressSearch(setCenter, callback);
+	
 	// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
 	var realEstateList = [{
 // 		zIndex: 1,
@@ -27,7 +38,7 @@
 			title: '<div style="width:150px;text-align:center;padding:6px 0;">${realEstate.title}</div>'
 		});
 	</c:forEach>
-	console.log(realEstateList);
+// 	console.log(realEstateList);
 	
 	for (var i = 0; i < realEstateList.length; i ++) {
 		

@@ -18,6 +18,7 @@ public class AccessController {
 		return "/template/accessLayout";
 	}
 	
+	
 	@GetMapping("/sign_up")
 	public String signUpView(
 			Model model) {
