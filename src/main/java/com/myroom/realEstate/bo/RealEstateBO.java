@@ -29,7 +29,9 @@ public class RealEstateBO {
 			map.put("zIndex", realEstatesInfo.get(i).getId());
 			map.put("jibunAddress", realEstatesInfo.get(i).getJibunAddress());
 			map.put("title", realEstatesInfo.get(i).getTitle());
-			map.put("agentComment", realEstatesInfo.get(i).getAgent_comment());
+			map.put("residencetype", realEstatesInfo.get(i).getResidence_type());
+			map.put("salestype", realEstatesInfo.get(i).getSales_type());
+			map.put("area", realEstatesInfo.get(i).getArea());
 			realEstateList.add(map);
 		}
 		

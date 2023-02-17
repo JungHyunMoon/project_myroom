@@ -38,7 +38,7 @@ a {
 	border: 1px solid #000000;
 }
 
-.registerNumberConfirm, .eye , .check-btn{
+.registerNumberConfirm, .eye, .check-btn {
 	border-radius: 0px;
 }
 
@@ -61,12 +61,18 @@ section {
 	width: 60%;
 	height: 100%;
 }
+
 .section-rigth {
 	width: 40%;
 	height: 100%;
 	overflow: scroll;
 	overflow-x: hidden;
 	padding: 3% 5% 3% 5%;
+}
+
+.search-box {
+	position: fixed;
+	width: 30%;
 }
 
 .realEstate-card {
