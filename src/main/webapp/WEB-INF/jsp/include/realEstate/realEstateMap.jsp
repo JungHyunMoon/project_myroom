@@ -18,8 +18,8 @@
 	
 	var callback = function(result, status) {
 	    if (status === kakao.maps.services.Status.OK) {
-	    	coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-	    	map.setCenter(coords);
+	    	LatLng = new kakao.maps.LatLng(result[0].y, result[0].x);
+	    	map.setCenter(LatLng);
 	    }
 	};
 
@@ -57,11 +57,11 @@
 		    // 정상적으로 검색이 완료됐으면 
 		     if (status == kakao.maps.services.Status.OK) {
 		    	
-		     	coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		    	LatLng = new kakao.maps.LatLng(result[0].y, result[0].x);
 				
 				var marker = new kakao.maps.Marker({
 			        map: map, // 마커를 표시할 지도
-			        position: coords, // 마커의 위치
+			        position: LatLng, // 마커의 위치
 			        zIndex: zIndex	// z-index : db에 id
 			    });
 				
@@ -72,7 +72,8 @@
 			
 			    // 마커에 표시할 인포윈도우를 생성합니다 
 			    var infowindow = new kakao.maps.InfoWindow({
-			    	content: title // 인포윈도우에 표시할 내용
+			    	content: title,	 // 인포윈도우에 표시할 내용
+			    	zIndex: 9999999
 			    });
 			
 			    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
@@ -81,7 +82,12 @@
 			    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
 			    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 			    kakao.maps.event.addListener(marker, 'click', function() {
-			        alert(marker.getZIndex());
+			        var realEstateId = marker.getZIndex();
+			        alert(realEstateId);
+// 			        var location = document.querySelector(
+// 			        	$("div").attr("z-index", realEstateId)		
+// 			        ).offsetTop;
+// 			        alert(location);
 			    });
 		     };
 		});	
@@ -89,6 +95,7 @@
 	    
 	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 	function makeOverListener(map, marker, infowindow) {
+	    infowindow.setZIndex(9999999999); // 임시
 	    return function() {
 	        infowindow.open(map, marker);
 	    };
