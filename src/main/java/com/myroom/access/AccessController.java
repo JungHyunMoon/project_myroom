@@ -3,13 +3,27 @@ package com.myroom.access;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/myroom")
 public class AccessController {
 
+	@GetMapping("")
+	public String mainView() {
+		return "/main";
+	}
+	
+	@GetMapping("/sign_up")
+	public String signUpView(
+			Model model) {
+		model.addAttribute("title", "회원가입");
+		model.addAttribute("viewName", "signUp");
+		return "/template/accessLayout";
+	}
+	
 	@GetMapping("/sign_in")
 	public String signInView(
 			Model model) {
@@ -18,13 +32,11 @@ public class AccessController {
 		return "/template/accessLayout";
 	}
 	
-	
-	@GetMapping("/sign_up")
-	public String signUpView(
-			Model model) {
-		model.addAttribute("title", "회원가입");
-		model.addAttribute("viewName", "signUp");
-		return "/template/accessLayout";
+	@GetMapping("/sign_out")
+	public String signOut(HttpSession session) {
+		
+		session.removeAttribute("userId");
+		return "redirect:/myroom/sign_in";
 	}
 	
 	@GetMapping("/find_my_id")

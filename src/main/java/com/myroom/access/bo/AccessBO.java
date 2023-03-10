@@ -19,7 +19,7 @@ public class AccessBO {
 	private RealtorDAO realtorDAO;
 	
 	public int getRealtorTotalCount(String realtorName, String registerNumber) {
-		JSONObject realtorJSON = openApiRealtorOffice.isRegisteredNumber(realtorName, registerNumber);
+		JSONObject realtorJSON = openApiRealtorOffice.callRegisteredRealtor(realtorName, registerNumber);
 		int totalCount = Integer.valueOf((String)realtorJSON.get("totalCount"));
 		
 		return totalCount;

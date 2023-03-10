@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,8 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.myroom.access.bo.AccessBO;
 import com.myroom.common.EncryptUtils;
 import com.myroom.realtor.bo.RealtorBO;
+import com.myroom.realtor.model.Realtor;
 import com.myroom.user.bo.UserBO;
 import com.myroom.user.model.User;
+
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 public class AccessRestController {
@@ -35,13 +40,17 @@ public class AccessRestController {
 	public Map<String, Object> signInUser(
 			@RequestParam("loginId") String loginId,
 			@RequestParam("password") String password,
-			Model model) {
+			Model model,
+			HttpSession session) {
 		
 		String hashedPassword = EncryptUtils.md5(password);
 		
 		Map<String, Object> result = new HashMap<>();
 		User user = userBO.getUserByLoginIdPassword(loginId, hashedPassword);
 		if (user != null) {
+			session.setAttribute("userId", user.getId());
+			session.setAttribute("loginId", user.getLoginId());
+			session.setAttribute("type", "basicUser");
 			result.put("code", 1);
 			result.put("result", "성공");
 			result.put("userName", user.getName());
@@ -58,13 +67,22 @@ public class AccessRestController {
 	public Map<String, Object> signInRealtor(
 			@RequestParam("loginId") String loginId,
 			@RequestParam("password") String password,
-			Model model) {
+			Model model,
+			HttpSession session) {
 		
-		String realtorPassword = realtorBO.getRealtorPasswordByLoginId(loginId);
-		boolean isMatches = passwordEncoder.matches(password, realtorPassword);
+		Realtor realtor = realtorBO.getRealtorByLoginId(loginId);
+		boolean isMatches = passwordEncoder.matches(password, realtor.getPassword());
+		
+		Map<String, Object> realtorInfo = realtorBO.getRegisterdRealtorInfoByRealtorNameRegisterNumber(realtor.getName(), realtor.getRegisterId());
+		String address = (String) realtorInfo.get("address");
+		String[] temp = address.split("\\s+");
+		String local2 = temp[temp.length -1];
 		
 		Map<String, Object> result = new HashMap<>();
 		if (isMatches == true) {
+			session.setAttribute("realtorId", realtor.getId());
+			session.setAttribute("local2", local2);
+			session.setAttribute("type", "realtor");
 			result.put("code", 2);
 			result.put("result", "성공");
 		} else {
@@ -81,12 +99,13 @@ public class AccessRestController {
 			@RequestParam("loginId") String loginId,
 			@RequestParam("password") String password,
 			@RequestParam("name") String name,
+			@RequestParam("phoneNumber") String phoneNumber,
 			@RequestParam("email") String email,
 			Model model) {
 		
 		String hashedPassword = EncryptUtils.md5(password);
 		
-		userBO.addUser(loginId, hashedPassword, name, email);
+		userBO.addUser(loginId, hashedPassword, name, phoneNumber, email);
 		Map<String, Object> result = new HashMap<>();
 		result.put("code", 1);
 		result.put("result", "성공");
@@ -139,4 +158,15 @@ public class AccessRestController {
 		
 		return result;
 	}
+	
+	@GetMapping("/items/{realEstateId}")
+	public Map<String, Object> itemsDetail(
+			@PathVariable int realEstateId,
+			Model model) {
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", realEstateId);
+		return result;
+	}
+	
 }
