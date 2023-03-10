@@ -23,7 +23,6 @@
 	crossorigin="anonymous"></script>
 	
 <!-- 카카오맵 API -->
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a12e90f6a3acfbdf4b442ae4229a9790"></script> -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a12e90f6a3acfbdf4b442ae4229a9790&libraries=services"></script>
 	
 <!-- fa -->
