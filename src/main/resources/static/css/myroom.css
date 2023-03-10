@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+html {
+	overflow: x-hidden;
+}
+
 html, body {
 	width: 100%;
 	height: 100%;
@@ -15,6 +19,15 @@ html, body {
 
 a {
 	text-decoration: none !important
+}
+
+.logo-text {
+	font-family: 'Inter';
+	font-style: italic;
+	font-weight: 800;
+	font-size: 40px;
+	line-height: 48px;
+	color: #599591;
 }
 
 .login-right {
@@ -44,7 +57,7 @@ a {
 
 section {
 	height: 90%;
-	background-color: lime;
+/* 	background-color: aqua; */
 }
 
 #header {
@@ -52,6 +65,10 @@ section {
 	height: 93px;
 	background-color: white;
 }
+
+/* .modal-content { */
+/* 	height: 1000px; */
+/* } */
 
 .fa-home {
 	font-size: 40px
@@ -79,16 +96,85 @@ section {
 	border: 1px solid #000000;
 }
 
+.border-highlight {
+	border: 5px solid #599591;
+}
+
 #map {
 	width: 100%;
 	height: 100%;
 }
 
-.logo-text {
-	font-family: 'Inter';
-	font-style: italic;
-	font-weight: 800;
-	font-size: 40px;
-	line-height: 48px;
-	color: #599591;
+.contents {
+	margin: 5% 10% 5% 10%;
+	width: 80%;
+	height: 80%;
+}
+
+.content {
+	width: 45%;
+	height: 100%;
+	border: 1px solid #000000;
+	padding: 2%;
+}
+
+.detail-box {
+	height: 100%;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.box-border {
+	border: 1px solid #000000;
+	padding: 10px;
+}
+
+.rooms-box {
+	height: 90%;
+	width: 90%;
+	background-color: blue;
+}
+
+#infoMap {
+	width: 100%;
+	height: 200px;
+}
+
+.fa-picture-o {
+	width: 50px;
+	height: 50px;
+}
+
+.room-info-box {
+	height: 100%;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.rooms {
+	width: 60%;
+	border: 1px solid #000000;
+}
+
+.new-rooms-box {
+	width: 60%;
+	border: 1px solid #000000;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.my-client-room {
+	width: 100%;
+	height: 80%;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.client-room-detail {
+	height: 100%;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+.table-wrap {
+	min-height: 40%;
 }
