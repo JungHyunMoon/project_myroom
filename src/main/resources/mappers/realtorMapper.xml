@@ -56,4 +56,19 @@
 		WHERE
 			`loginId` = #{loginId}
 	</select>
+	<select id="selectRealtorById" parameterType="int" resultType="com.myroom.realtor.model.Realtor">
+		SELECT
+			`id`
+			, `loginId`
+			, `password`
+			, `name`
+			, `registerId`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`realtor`
+		WHERE
+			`id` = #{realtorId}
+	</select>
 </mapper>
