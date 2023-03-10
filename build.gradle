@@ -34,8 +34,13 @@ dependencies {
 	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
 	compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-    
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.6.7'
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+	implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
+	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+	
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
 }
 
 tasks.named('test') {
