@@ -12,12 +12,20 @@ public class UserBO {
 	@Autowired 
 	private UserDAO userDAO;
 	
-	public void addUser(String loginId, String hashedPassword, String name, String email) {
-		userDAO.insertUser(loginId, hashedPassword, name, email);
+	public void addUser(String loginId, String hashedPassword, String name, String phoneNumber, String email) {
+		userDAO.insertUser(loginId, hashedPassword, name, phoneNumber, email);
 	}
 	
 	public User getUserByLoginIdPassword(String loginId, String hashedPassword) {
 		return userDAO.selectUserByLoginIdPassword(loginId, hashedPassword);
+	}
+	
+	public User getUserById(int userId) {
+		return userDAO.selectUserById(userId);
+	}
+	
+	public void deleteUser(int userId) {
+		userDAO.deleteUser(userId);
 	}
 	
 }

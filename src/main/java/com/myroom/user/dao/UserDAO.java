@@ -16,7 +16,12 @@ public interface UserDAO {
 			@Param("loginId") String loginId, 
 			@Param("hashedPassword") String hashedPassword, 
 			@Param("name")String name,
+			@Param("phoneNumber")String phoneNumber,
 			@Param("email")String email);
 	
 	public User selectUserByLoginId(String loginId);
+	
+	public User selectUserById(int userId);
+	
+	public void deleteUser(int userId);
 }
