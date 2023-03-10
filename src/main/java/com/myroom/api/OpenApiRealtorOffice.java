@@ -14,8 +14,31 @@ import org.springframework.stereotype.Component;
 @Component
 public class OpenApiRealtorOffice {
 
-	public JSONObject isRegisteredNumber(String name, String registerNumber) {
+//		"field": [
+//		          {
+//		            "lastUpdtDt": "2023-03-04",
+//		            "ldCode": "11710",
+//		            "ldCodeNm": "서울특별시 송파구",
+//		            "brkrAsortCode": "2",
+//		            "brkrAsortCodeNm": "공인중개사",
+//		            "crqfcNo": "21-01907",
+//		            "crqfcAcqdt": "2010-11-26",
+//		            "ofcpsSeCode": "04",
+//		            "ofcpsSeCodeNm": "일반",
+//		            "jurirno": "9253-8848",
+//		            "bsnmCmpnm": "삼성공인중개사사무소",
+//		            "brkrNm": "이관후"
+//		          }
+//		         ],
+//		"totalCount": "3",
+//    	"numOfRows": "10",
+//   	"pageNo": "1",
+//    	"resultCode": null,
+//   	"resultMsg": null
+	        
+	public JSONObject callRegisteredRealtor(String name, String registerNumber) {
 		// StringBuffer 객체는 .append를 통해 계속해서 문자열을 추가해 나갈 수 있다.
+
 		StringBuffer resultBr = new StringBuffer();
 		try {
 			// 강제로 파라미터 URL encoding
