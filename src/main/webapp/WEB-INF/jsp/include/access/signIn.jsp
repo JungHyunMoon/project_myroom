@@ -60,7 +60,7 @@
 				if (data.code == 1) {	// 성공
 					document.location.href="/myroom/user/map";			
 				} else if (data.code == 2) {
-					document.location.href="/myroom/realtor/map";			
+					document.location.href="/myroom/realtor/new_room";			
 				} else {	// 실패
 					alert(data.errorMessage);
 				}

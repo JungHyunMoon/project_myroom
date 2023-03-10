@@ -23,7 +23,7 @@
 							</button>
 						</div>
 					</div>
-					<div class="input-group mt-2">
+					<div class="input-group my-1">
 						<input type="password" id="userPassword" name="password" class="password form-control" placeholder="비밀번호">
 						<div class="input-group-append">
 							<button type="button" class="eye form-control">
@@ -31,7 +31,7 @@
 							</button>
 						</div>
 					</div>
-					<div class="input-group mt-2">
+					<div class="input-group my-1">
 						<input type="password" id="userPasswordConfirm" name="passwordConfirm" class="password-confirm form-control" placeholder="비밀번호 확인">
 						<div class="input-group-append">
 							<button type="button" class="eye form-control">
@@ -39,10 +39,13 @@
 							</button>	
 						</div>
 					</div>
-					<div class="mt-2">
+					<div class="my-1">
 						<input type="text" id="userName" name="name" class="name form-control" placeholder="이름">
 					</div>
-					<div class="mt-2">
+					<div class="my-1">
+						<input type="text" id="phoneNumber" name="phoneNumber" class="phoneNumber form-control" placeholder="전화번호 ex) 010-1234-5678">
+					</div>
+					<div class="my-1">
 						<input type="email" id="userEmail" name="email" class="email form-control" placeholder="이메일">
 					</div>
 					
@@ -168,6 +171,7 @@
 			let password = $('#userPassword').val();
 			let passwordConfirm = $('#userPasswordConfirm').val();
 			let name = $('#userName').val().trim();
+			let phoneNumber = $('#phoneNumber').val().trim();
 			let email = $('#userEmail').val().trim();
 			
 			if (loginId == "") {
@@ -188,6 +192,10 @@
 			}
 			if (name == "") {
 				alert("계정이름을 입력해 주세요.");
+				return false;
+			}
+			if (phoneNumber == "") {
+				alert("전화번호를 입력해 주세요.");
 				return false;
 			}
 			if (email == "") {
