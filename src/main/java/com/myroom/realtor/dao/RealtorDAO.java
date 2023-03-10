@@ -20,4 +20,7 @@ public interface RealtorDAO {
 			@Param("encodedPassword") String encodedPassword);
 	
 	public Realtor selectRealtorByLoginId(String loginId);
+	
+	public Realtor selectRealtorById(int realtorId);
+	
 }
