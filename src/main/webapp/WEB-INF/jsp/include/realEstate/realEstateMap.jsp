@@ -83,11 +83,10 @@
 			    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 			    kakao.maps.event.addListener(marker, 'click', function() {
 			        var realEstateId = marker.getZIndex();
-			        alert(realEstateId);
-// 			        var location = document.querySelector(
-// 			        	$("div").attr("z-index", realEstateId)		
-// 			        ).offsetTop;
-// 			        alert(location);
+			        let div = document.getElementById(realEstateId)
+			        let location = div.offsetTop - 195;
+			        div.parentElement.classList.add('border-highlight');
+			        $('.section-rigth').scrollTop(location);
 			    });
 		     };
 		});	
