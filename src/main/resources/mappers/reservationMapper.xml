@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myroom.reservation.dao.ReservationDAO">
+	<insert id="insertReservation">
+		INSERT INTO `reservation`
+		(
+			`realEstateId`
+			,`realtorId`
+			,`userId`
+			,`createdAt`
+			,`updatedAt`
+		)
+		VALUES
+		(
+			#{realEstateId}
+			, #{realtorId}
+			, #{userId}
+			, NOW()
+			, NOW()
+		)
+	</insert>
+	<select id="selectReservationByRealtorIdRealEstateId" parameterType="map" resultType="com.myroom.reservation.model.Reservation">
+		SELECT
+			`id`
+			,`realEstateId`
+			,`realtorId`
+			,`userId`
+			,`status`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`reservation`
+		WHERE
+			`realtorId` = #{realtorId}
+			AND `realEstateId` = #{realEstateId}
+	</select>
+	<select id="selectReservationListByRealtorId" parameterType="int" resultType="com.myroom.reservation.model.Reservation">
+		SELECT
+			`id`
+			,`realEstateId`
+			,`realtorId`
+			,`userId`
+			,`status`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`reservation`
+		WHERE
+			`realtorId` = #{realtorId}
+	</select>
+	<select id="selectReservationListByRealtorIdRealEstateId" parameterType="map" resultType="com.myroom.reservation.model.Reservation">
+		SELECT
+			`id`
+			,`realEstateId`
+			,`realtorId`
+			,`userId`
+			,`status`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`reservation`
+		WHERE
+			`realEstateId` = #{realEstateId}
+			AND `realtorId` = #{realtorId}
+	</select>
+	<select id="selectReservationStatusByRealtorIdUserId" parameterType="map" resultType="String">
+		SELECT
+			`status`
+		FROM
+			`reservation`
+		WHERE
+			`realtorId` = #{realtorId}
+			AND `userId` = #{userId}
+	</select>
+	<select id="selectCompletedReservationListByUserId" parameterType="int" resultType="com.myroom.reservation.model.Reservation">
+		SELECT
+			`id`
+			,`realEstateId`
+			,`realtorId`
+			,`userId`
+			,`status`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`reservation`
+		WHERE
+			`userId` = #{userId}
+			AND `status` = '거래완료'
+	</select>
+	<update id="updateReservationStatus" parameterType="map">
+		UPDATE
+			`reservation`
+		SET
+			`status` = #{status}
+		WHERE
+			`realEstateId` = #{realEstateId}
+			AND `userId` = #{userId}
+	</update>
+	<delete id="deleteReservation" parameterType="int">
+		DELETE FROM 
+			`reservation`
+		WHERE
+			`realEstateId` = #{realEstateId}
+	</delete>
+</mapper>
