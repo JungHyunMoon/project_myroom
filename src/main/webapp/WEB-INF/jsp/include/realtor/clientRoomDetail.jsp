@@ -78,8 +78,12 @@
 		let userId = $(this).data('id');
 		let status = $(this).val();
 		
-		if (status == "대기중") {
-			status = "예약중";
+		if (status != "거래완료") {
+			if (status == "대기중") {
+				status = "예약중";
+			} else if (status == "예약중") {
+				status = "거래완료";
+			}
 			
 			$.ajax({
 				type:"POST"
@@ -97,7 +101,7 @@
 					}
 				}
 			});
-		} else if (status == "예약중") {
+		} else if (status == "거래완료") {
 			$.ajax({
 				type:"POST"
 				, url:"/delete_reservation"
