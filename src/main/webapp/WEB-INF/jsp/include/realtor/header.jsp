@@ -3,7 +3,7 @@
 <div id="header" class="d-flex">
 	<nav class="navbar navbar-expand w-100">
 		<div class="container-fluid">
-			<a href="/myroom/user/map" class="logo-text mr-5"><i
+			<a href="/myroom" class="logo-text mr-5"><i
 				class="fa fa-home fa-fw"></i>MyRoom</a>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mt-3">
