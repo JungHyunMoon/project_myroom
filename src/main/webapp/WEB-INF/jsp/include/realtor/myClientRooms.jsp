@@ -8,7 +8,7 @@
 	<table class="table align-middle table-hover text-center">
 		<thead>
 			<tr>
-				<th>상태</th>
+				<th>#</th>
 				<th>지번주소</th>
 				<th>price<br>(만원)</th>
 			</tr>
@@ -21,7 +21,7 @@
 				<c:forEach var="realEstate" items="${realEstateList}" varStatus="status">
 					<div class="roomCard w-100">
 						<tr>
-							<td>예약중</td>
+							<th>${status.index+1}</th>
 							<td>${realEstate.jibunAddress}</td>
 							<c:choose>
 								<c:when test="${realEstate.sales_type == '매매'}">
