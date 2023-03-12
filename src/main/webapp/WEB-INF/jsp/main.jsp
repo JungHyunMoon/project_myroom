@@ -15,7 +15,7 @@
 			MyRoom
 		</div>
 		<div>
-			<img alt="" src="/static/img/titleWordCloud.png">
+			<img alt="" src="/static/img/titleWordCloud.png" width="400px">
 		</div>
 	</div>
 </body>
