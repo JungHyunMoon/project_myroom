@@ -36,5 +36,9 @@ public interface ReservationDAO {
 	
 	public void deleteReservation(int realEstateId);
 	
+	public void deleteReservationByUserIdRealEstaetId(
+			@Param("userId") int userId,
+			@Param("realEstateId") int realEstateId);
+	
 	public List<Reservation> selectCompletedReservationListByUserId(int userId);
 }

@@ -86,7 +86,7 @@
 			`reservation`
 		WHERE
 			`userId` = #{userId}
-			AND `status` = '거래완료'
+			AND `status` != '거래완료'
 	</select>
 	<update id="updateReservationStatus" parameterType="map">
 		UPDATE
@@ -102,5 +102,12 @@
 			`reservation`
 		WHERE
 			`realEstateId` = #{realEstateId}
+	</delete>
+	<delete id="deleteReservationByUserIdRealEstaetId" parameterType="map">
+		DELETE FROM 
+			`reservation`
+		WHERE
+			`userId` = #{userId}
+			AND	`realEstateId` = #{realEstateId}
 	</delete>
 </mapper>
