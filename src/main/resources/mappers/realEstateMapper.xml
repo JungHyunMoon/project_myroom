@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.myroom.realEstate.dao.RealEstateDAO">
+	<insert id="insertRealEstate" parameterType="map">
+		INSERT INTO `real_estate`
+		(
+			`userId`
+		    , `sales_type`
+		    , `deposit`
+		    , `monthRentPrice`
+		    , `area`
+		    , `address`
+		    , `jibunAddress`
+		    , `local1`
+		    , `local2`
+		    , `local3`
+		    , `title`
+		    , `residence_type`
+		    , `description`
+		    , `createdAt`
+			, `updatedAt`
+		) 
+		VALUES
+		(
+			#{userId}
+			, #{sales_type}
+			, #{deposit}
+			, #{monthRentPrice}
+			, #{area}
+			, #{address}
+			, #{jibunAddress}
+			, #{local1}
+			, #{local2}
+			, #{local3}
+			, #{title}
+			, #{residence_type}
+			, #{description}
+			, NOW()
+			, NOW()
+		)
+	</insert>
+
+	<select id="selectRealEstateListByUserId" parameterType="int" resultType="com.myroom.realEstate.model.RealEstate">
+		SELECT
+			`id`
+			,`userId`
+			,`sales_type`
+			,`service_type`
+			,`sales_price`
+			,`deposit`
+			,`monthRentPrice`
+			,`area`
+			,`address`
+			,`jibunAddress`
+			,`local1`
+			,`local2`
+			,`local3`
+			,`local4`
+			,`title`
+			,`residence_type`
+			,`description`
+			,`realtor_id`
+			,`realtor_comment`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`real_estate`
+		WHERE
+			`userId` = #{userId}
+	</select>
+	<select id="selectRealEstateListByRealtorId" parameterType="int" resultType="com.myroom.realEstate.model.RealEstate">
+		SELECT
+			`id`
+			,`userId`
+			,`sales_type`
+			,`service_type`
+			,`sales_price`
+			,`deposit`
+			,`monthRentPrice`
+			,`area`
+			,`address`
+			,`jibunAddress`
+			,`local1`
+			,`local2`
+			,`local3`
+			,`local4`
+			,`title`
+			,`residence_type`
+			,`description`
+			,`realtor_id`
+			,`realtor_comment`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`real_estate`
+		WHERE
+			`realtor_id` = #{realtorID}
+	</select>
+	<select id="getRealEstateInfoByLocal2" parameterType="String" resultType="com.myroom.realEstate.model.RealEstate">
+		SELECT
+			`id`
+			,`userId`
+			,`sales_type`
+			,`service_type`
+			,`sales_price`
+			,`deposit`
+			,`monthRentPrice`
+			,`area`
+			,`address`
+			,`jibunAddress`
+			,`local1`
+			,`local2`
+			,`local3`
+			,`local4`
+			,`title`
+			,`residence_type`
+			,`description`
+			,`realtor_id`
+			,`realtor_comment`
+		FROM
+			`real_estate`
+		WHERE
+			`local3` = #{local2}
+	</select>
+	<select id="getRealEstateInfoByLocal3" parameterType="String" resultType="com.myroom.realEstate.model.RealEstate">
+		SELECT
+			`id`
+			,`userId`
+			,`sales_type`
+			,`service_type`
+			,`sales_price`
+			,`deposit`
+			,`monthRentPrice`
+			,`area`
+			,`address`
+			,`jibunAddress`
+			,`local1`
+			,`local2`
+			,`local3`
+			,`local4`
+			,`title`
+			,`residence_type`
+			,`description`
+			,`realtor_id`
+			,`realtor_comment`
+		FROM
+			`real_estate`
+		WHERE
+			`local3` = #{local3}
+	</select>
+	<select id="selectRealEstateById" parameterType="int" resultType="com.myroom.realEstate.model.RealEstate">
+		SELECT
+			`id`
+			,`userId`
+			,`sales_type`
+			,`service_type`
+			,`sales_price`
+			,`deposit`
+			,`monthRentPrice`
+			,`area`
+			,`address`
+			,`jibunAddress`
+			,`local1`
+			,`local2`
+			,`local3`
+			,`local4`
+			,`title`
+			,`residence_type`
+			,`description`
+			,`realtor_id`
+			,`realtor_comment`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`real_estate`
+		WHERE
+			`id` = #{realEstateId}
+	</select>
+	<delete id="deleteRoomByRealEstateId" parameterType="int">
+		DELETE FROM
+			`real_estate`
+		WHERE
+			`id` = #{realEstateId}
+	</delete>
+	<select id="selectRealEstateWithNoRealtorInMylocal2" parameterType="String" resultType="com.myroom.realEstate.model.RealEstate">
+		SELECT 
+			`id`
+			,`userId`
+			,`sales_type`
+			,`service_type`
+			,`sales_price`
+			,`deposit`
+			,`monthRentPrice`
+			,`area`
+			,`address`
+			,`jibunAddress`
+			,`local1`
+			,`local2`
+			,`local3`
+			,`local4`
+			,`title`
+			,`residence_type`
+			,`description`
+			,`realtor_id`
+			,`realtor_comment`
+		FROM
+			`real_estate`
+		WHERE
+			`address` LIKE CONCAT('%', #{local2}, '%')
+		AND
+			`realtor_id` IS NULL
+		ORDER BY
+			`createdAt` DESC
+	</select>
+	<update id="updateRoomRealtorId" parameterType="map">
+		UPDATE `real_estate`
+		SET 
+			`realtor_id` = #{realtorId}
+		WHERE
+			`id` = #{realEstateId}
+	</update>
+	<update id="updateRoomRealtorIdNullByRealEstateId" parameterType="int">
+		UPDATE `real_estate`
+		SET 
+			`realtor_id` = NULL
+		WHERE
+			`id` = #{realEstateId}
+	</update>
+	
+	<update id="updateRealtorComment" parameterType="map">
+		UPDATE `real_estate`
+		SET 
+			`realtor_comment` = #{comment}
+		WHERE
+			`id` = #{realEstateId}
+	</update>
+</mapper>

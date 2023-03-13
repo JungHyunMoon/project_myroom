@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.myroom.realtor.dao.RealtorDAO">
+	<insert id="insertRealtor" parameterType="map">
+		INSERT INTO `realtor`
+		(
+			`loginId`
+			, `password`
+			, `name`
+			, `registerId`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{loginId}
+			, #{encodedPassword}
+			, #{name}
+			, #{registerId}
+			, #{email}
+			, NOW()
+			, NOW()
+		)
+	</insert>
+	<select id="selectRealtorByLoginIdPassword" parameterType="map" resultType="com.myroom.realtor.model.Realtor">
+		SELECT
+			`id`
+			, `loginId`
+			, `password`
+			, `name`
+			, `registerId`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`realtor`
+		WHERE
+			`loginId` = #{loginId} AND
+			`password` = #{encodedPassword}
+	</select>
+	<select id="selectRealtorByLoginId" parameterType="String" resultType="com.myroom.realtor.model.Realtor">
+		SELECT
+			`id`
+			, `loginId`
+			, `password`
+			, `name`
+			, `registerId`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`realtor`
+		WHERE
+			`loginId` = #{loginId}
+	</select>
+	<select id="selectRealtorById" parameterType="int" resultType="com.myroom.realtor.model.Realtor">
+		SELECT
+			`id`
+			, `loginId`
+			, `password`
+			, `name`
+			, `registerId`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`realtor`
+		WHERE
+			`id` = #{realtorId}
+	</select>
+</mapper>

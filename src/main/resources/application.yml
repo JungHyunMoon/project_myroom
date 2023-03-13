@@ -1,5 +1,8 @@
 server:
   port: 80
+  servlet:
+    encoding:
+      charset: UTF-8
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -9,5 +12,10 @@ spring:
   mvc:
     static-path-pattern: /static/**
     view:
-      prefix: /WEB-INF/jsp/
+      prefix: /WEB-INF/jsp
       suffix: .jsp
+      
+jwt:
+  header: Authorization
+  secret: and0LXRlc3QtYWxqamFiYWVnaS1qd3QtdGVzdC1hbGpqYWJhZWdpLWp3dC10ZXN0LWFsamphYmFlZ2ktand0LXRlc3QtYWxqamFiYWVnaS1qd3QtdGVzdC1hbGpqYWJhZWdpLWp3dC10ZXN0LWFsamphYmFlZ2ktand0LXRlc3QtYWxqamFiYWVnaS1qd3QtdGVzdC1hbGpqYWJhZWdp
+  token-validity-in-seconds: 86400

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myroom.user.dao.UserDAO">
+	<select id="selectUserByLoginIdPassword" parameterType="map"
+		resultType="com.myroom.user.model.User">
+		SELECT
+			`id`
+			, `loginId`
+			, `password`
+			, `name`
+			, `phoneNumber`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`user`
+		WHERE
+			`loginId` = #{loginId} AND
+			`password` = #{hashedPassword}
+	</select>
+	<insert id="insertUser" parameterType="map">
+		INSERT INTO `user`
+		(
+			`loginId`
+			, `password`
+			, `name`
+			, `phoneNumber`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{loginId}
+			, #{hashedPassword}
+			, #{name}
+			, #{phoneNumber}
+			, #{email}
+			, NOW()
+			, NOW()
+		)
+	</insert>
+	<select id="selectUserByLoginId" parameterType="String" resultType="com.myroom.user.model.User">
+		SELECT
+			`id`
+			, `loginId`
+			, `password`
+			, `name`
+			, `phoneNumber`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`user`
+		WHERE
+			`loginId` = #{loginId}
+	</select>
+	<select id="selectUserById" parameterType="int" resultType="com.myroom.user.model.User">
+		SELECT
+			`id`
+			, `loginId`
+			, `password`
+			, `name`
+			, `phoneNumber`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`user`
+		WHERE
+			`id` = #{userId}
+	</select>
+	<delete id="deleteUser" parameterType="int">
+		DELETE FROM
+			`user`
+		WHERE
+			`id` = #{userId}
+	</delete>
+</mapper>
