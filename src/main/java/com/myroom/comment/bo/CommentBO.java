@@ -18,6 +18,10 @@ public class CommentBO {
 		commentDAO.insertComment(userId, realEstateId, content);
 	}
 	
+	public void deleteCommentByRealEstateId(int realEstateId) {
+		commentDAO.deleteCommentByRealEstateId(realEstateId);
+	}
+	
 	public List<CommentCard> getCommentCardListByRealEstateId(int realEstateId) {
 		return commentDAO.selectCommentCardListByRealEstateId(realEstateId);
 	}

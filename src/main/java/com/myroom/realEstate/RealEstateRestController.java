@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myroom.comment.bo.CommentBO;
 import com.myroom.realEstate.bo.RealEstateBO;
 import com.myroom.realEstate.model.RealEstate;
 import com.myroom.reservation.bo.ReservationBO;
@@ -24,6 +25,8 @@ public class RealEstateRestController {
 
 	@Autowired
 	private RealEstateBO realEstateBO;
+	@Autowired
+	private CommentBO commentBO;
 	@Autowired
 	private ReservationBO reservationBO;
 	@Autowired
@@ -56,6 +59,8 @@ public class RealEstateRestController {
 			@RequestParam("realEstateId") int realEstateId) {
 		
 		realEstateBO.deleteRoomByRealEstateId(realEstateId);
+		commentBO.deleteCommentByRealEstateId(realEstateId);
+		reservationBO.deleteReservation(realEstateId);
 		
 		Map<String, Object> result = new HashMap<>();
 		result.put("code", 1);
