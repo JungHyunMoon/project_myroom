@@ -42,6 +42,8 @@ public interface RealEstateDAO {
 	
 	public void deleteRoomByRealEstateId(int realEstateId);
 	
+	public void deleteRoomByUserId(int userId);
+	
 	public List<RealEstate> selectRealEstateWithNoRealtorInMylocal2(String local2);
 	
 	public void updateRoomRealtorId(

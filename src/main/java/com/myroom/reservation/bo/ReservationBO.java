@@ -68,6 +68,10 @@ public class ReservationBO {
 		reservationDAO.deleteReservation(realEstateId);
 	}
 	
+	public void deleteReservationByUserId(int userId) {
+		reservationDAO.deleteReservationByUserId(userId);
+	}
+	
 	public void deleteReservationByUserIdRealEstaetId(int userId , int realEstateId) {
 		reservationDAO.deleteReservationByUserIdRealEstaetId(userId, realEstateId);
 	}

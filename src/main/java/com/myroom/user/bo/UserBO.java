@@ -27,5 +27,4 @@ public class UserBO {
 	public void deleteUser(int userId) {
 		userDAO.deleteUser(userId);
 	}
-	
 }

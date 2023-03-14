@@ -115,6 +115,12 @@
 		WHERE
 			`realEstateId` = #{realEstateId}
 	</delete>
+	<delete id="deleteReservationByUserId" parameterType="int">
+		DELETE FROM 
+			`reservation`
+		WHERE
+			`userId` = #{userId}
+	</delete>
 	<delete id="deleteReservationByUserIdRealEstaetId" parameterType="map">
 		DELETE FROM 
 			`reservation`

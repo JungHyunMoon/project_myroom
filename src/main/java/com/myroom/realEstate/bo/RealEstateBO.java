@@ -98,6 +98,10 @@ public class RealEstateBO {
 		realEstateDAO.deleteRoomByRealEstateId(realEstateId);
 	}
 	
+	public void deleteRoomByUserId(int userId) {
+		realEstateDAO.deleteRoomByUserId(userId);
+	}
+	
 	public List<RealEstate> getRealEstateWithNoRealtorInMylocal2(String local2) {
 		return realEstateDAO.selectRealEstateWithNoRealtorInMylocal2(local2);
 	}

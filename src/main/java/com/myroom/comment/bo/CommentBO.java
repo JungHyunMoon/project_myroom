@@ -22,6 +22,10 @@ public class CommentBO {
 		commentDAO.deleteCommentByRealEstateId(realEstateId);
 	}
 	
+	public void deleteCommentByUserId(int userId) {
+		commentDAO.deleteCommentByUserId(userId);
+	}
+	
 	public List<CommentCard> getCommentCardListByRealEstateId(int realEstateId) {
 		return commentDAO.selectCommentCardListByRealEstateId(realEstateId);
 	}
