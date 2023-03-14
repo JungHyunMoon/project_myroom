@@ -27,6 +27,12 @@
 		WHERE
 			`realEstateId` = #{realEstateId}
 	</delete>
+	<delete id="deleteCommentByUserId" parameterType="int">
+		DELETE FROM
+			`comment`
+		WHERE
+			`userId` = #{userId}
+	</delete>
 	<select id="selectCommentCardListByRealEstateId" parameterType="int" resultType="com.myroom.comment.model.CommentCard">
 		SELECT 
 			b.`name`

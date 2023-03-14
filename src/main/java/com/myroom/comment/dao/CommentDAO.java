@@ -17,5 +17,7 @@ public interface CommentDAO {
 	
 	public void deleteCommentByRealEstateId(int realEstateId);
 	
+	public void deleteCommentByUserId(int userId);
+	
 	public List<CommentCard> selectCommentCardListByRealEstateId(int realEstateId);
 }

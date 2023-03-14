@@ -184,6 +184,12 @@
 		WHERE
 			`id` = #{realEstateId}
 	</delete>
+	<delete id="deleteRoomByUserId" parameterType="int">
+		DELETE FROM
+			`real_estate`
+		WHERE
+			`userId` = #{userId}
+	</delete>
 	<select id="selectRealEstateWithNoRealtorInMylocal2" parameterType="String" resultType="com.myroom.realEstate.model.RealEstate">
 		SELECT 
 			`id`
