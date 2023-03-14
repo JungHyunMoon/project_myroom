@@ -26,7 +26,7 @@
 		</tbody>
 	</table>
 	<div id="commentBox" class="d-none">
-		<div class="">
+		<div class="d-none">
 			<input id="realEstateId">
 			<input id="reservationId">
 		</div>

@@ -12,7 +12,6 @@
 					<li class="nav-item"><a class="nav-link" aria-current="page"
 						href="/myroom/realtor/clients">중개관리</a></li>
 				</ul>
-				${local2} ${realtorId}
 
 				<button type="button" class="modal-btn btn btn-outline-success"
 					data-bs-toggle="modal" data-bs-target="#exampleModal">마이페이지</button>
