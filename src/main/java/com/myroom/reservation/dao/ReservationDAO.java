@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.myroom.reservation.model.Reservation;
+import com.myroom.reservation.model.ReservationCard;
+import com.myroom.user.model.UserReservation;
 
 @Repository
 public interface ReservationDAO {
@@ -41,4 +43,8 @@ public interface ReservationDAO {
 			@Param("realEstateId") int realEstateId);
 	
 	public List<Reservation> selectCompletedReservationListByUserId(int userId);
+	
+	public List<UserReservation> selectUserReservationListByUserId(int userId);
+	
+	public List<ReservationCard> selectMyReservationByUserId(int userId);
 }

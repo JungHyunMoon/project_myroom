@@ -6,9 +6,9 @@
 		<thead>
 			<tr>
 				<th>등록번호</th>
-				<th>상태</th>
 				<th>address</th>
-				<th>price</th>
+				<th>상태</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -16,8 +16,8 @@
 				<div class="roomCard w-100">
 					<tr>
 						<th>${reservation.id}</th>
+						<td>${reservation.jibunAddress}</td>
 						<td>${reservation.status}</td>
-						<td>${status.count}</td>
 						<td><button class="expose-comment btn btn-secondary" 
 						data-real-estate-id="${reservation.realEstateId}" data-reservation-id="${reservation.id}">후기 작성</button></td>
 					</tr>

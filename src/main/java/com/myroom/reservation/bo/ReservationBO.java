@@ -2,7 +2,9 @@ package com.myroom.reservation.bo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ import com.myroom.reservation.model.Reservation;
 import com.myroom.reservation.model.ReservationCard;
 import com.myroom.user.dao.UserDAO;
 import com.myroom.user.model.User;
+import com.myroom.user.model.UserReservation;
 
 @Service
 public class ReservationBO {
@@ -69,8 +72,15 @@ public class ReservationBO {
 		reservationDAO.deleteReservationByUserIdRealEstaetId(userId, realEstateId);
 	}
 	
-	public List<Reservation> getCompletedReservationListByUserId(int userId) {
-		return reservationDAO.selectCompletedReservationListByUserId(userId);
+	public List<UserReservation> getUserReservationListByUserId(int userId) {
+		return reservationDAO.selectUserReservationListByUserId(userId);
+	}
+	
+	public List<Map<JSONObject, String>> getMyReservationByUserId(int userId) {
+		List<Map<JSONObject, String>> result = new ArrayList<>();
+		
+		
+		return result;
 	}
 	
 }

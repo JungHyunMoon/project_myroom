@@ -81,6 +81,7 @@ public class AccessRestController {
 		Map<String, Object> result = new HashMap<>();
 		if (isMatches == true) {
 			session.setAttribute("realtorId", realtor.getId());
+			session.setAttribute("loginId", realtor.getLoginId());
 			session.setAttribute("local2", local2);
 			session.setAttribute("type", "realtor");
 			result.put("code", 2);

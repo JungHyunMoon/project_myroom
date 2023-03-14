@@ -88,6 +88,18 @@
 			`userId` = #{userId}
 			AND `status` != '거래완료'
 	</select>
+	<select id="selectUserReservationListByUserId" parameterType="int" resultType="com.myroom.user.model.UserReservation">
+		SELECT 
+			A.`id`
+			, B.`id` as realEstateId
+		    , B.`jibunAddress`
+		    , A.`status`
+		FROM `reservation` as A
+		JOIN `real_estate` as B
+		ON A.`realEstateId` = B.`id`
+		WHERE A.`userId` = #{userId}
+		;
+	</select>
 	<update id="updateReservationStatus" parameterType="map">
 		UPDATE
 			`reservation`
