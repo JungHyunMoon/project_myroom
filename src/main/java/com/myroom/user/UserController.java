@@ -3,6 +3,9 @@ package com.myroom.user;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.myroom.realEstate.bo.RealEstateBO;
 import com.myroom.realEstate.model.RealEstate;
 import com.myroom.reservation.bo.ReservationBO;
-import com.myroom.reservation.model.Reservation;
-
-import jakarta.servlet.http.HttpSession;
+import com.myroom.user.model.UserReservation;
 
 @Controller
 @RequestMapping("/myroom/user")
@@ -70,7 +71,7 @@ public class UserController {
 			HttpSession session) {
 		
 		int userId = (int) session.getAttribute("userId");
-		List<Reservation> reservationList = reservationBO.getCompletedReservationListByUserId(userId);
+		List<UserReservation> reservationList = reservationBO.getUserReservationListByUserId(userId);
 		
 		model.addAttribute("reservationList", reservationList);
 		model.addAttribute("title", "예약내역");

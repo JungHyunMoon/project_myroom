@@ -2,6 +2,8 @@ package com.myroom.realEstate;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +15,6 @@ import com.myroom.comment.bo.CommentBO;
 import com.myroom.comment.model.CommentCard;
 import com.myroom.realEstate.bo.RealEstateBO;
 import com.myroom.realEstate.model.RealEstate;
-
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/myroom")

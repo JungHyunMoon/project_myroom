@@ -11,7 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+<<<<<<< HEAD
 @Component	// 일반적인 스프링 빈
+=======
+@Component
+>>>>>>> develope
 public class FileManagerService {
 	// 실제 이미지가 저장될 경로(서버)
 	public static final String FILE_UPLOAD_PATH = "C:\\JUNGHYUNMOON\\SpringBoot\\myroom\\workspace\\images/";
@@ -70,4 +74,9 @@ public class FileManagerService {
 			}
 		}
 	}
+<<<<<<< HEAD
 }
+=======
+
+}
+>>>>>>> develope

@@ -3,6 +3,8 @@ package com.myroom.access;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
@@ -18,8 +20,6 @@ import com.myroom.realtor.bo.RealtorBO;
 import com.myroom.realtor.model.Realtor;
 import com.myroom.user.bo.UserBO;
 import com.myroom.user.model.User;
-
-import jakarta.servlet.http.HttpSession;
 
 @RestController
 public class AccessRestController {
@@ -81,6 +81,7 @@ public class AccessRestController {
 		Map<String, Object> result = new HashMap<>();
 		if (isMatches == true) {
 			session.setAttribute("realtorId", realtor.getId());
+			session.setAttribute("loginId", realtor.getLoginId());
 			session.setAttribute("local2", local2);
 			session.setAttribute("type", "realtor");
 			result.put("code", 2);

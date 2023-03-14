@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,20 +13,20 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myroom.comment.bo.CommentBO;
 import com.myroom.realEstate.bo.RealEstateBO;
 import com.myroom.realEstate.model.RealEstate;
 import com.myroom.reservation.bo.ReservationBO;
 import com.myroom.reservation.model.ReservationCard;
 import com.myroom.user.bo.UserBO;
-import com.myroom.user.model.User;
-
-import jakarta.servlet.http.HttpSession;
 
 @RestController
 public class RealEstateRestController {
 
 	@Autowired
 	private RealEstateBO realEstateBO;
+	@Autowired
+	private CommentBO commentBO;
 	@Autowired
 	private ReservationBO reservationBO;
 	@Autowired
@@ -57,6 +59,8 @@ public class RealEstateRestController {
 			@RequestParam("realEstateId") int realEstateId) {
 		
 		realEstateBO.deleteRoomByRealEstateId(realEstateId);
+		commentBO.deleteCommentByRealEstateId(realEstateId);
+		reservationBO.deleteReservation(realEstateId);
 		
 		Map<String, Object> result = new HashMap<>();
 		result.put("code", 1);

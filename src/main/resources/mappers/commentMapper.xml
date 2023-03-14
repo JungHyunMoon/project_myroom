@@ -21,6 +21,12 @@
 			,NOW()
 		)
 	</insert>
+	<delete id="deleteCommentByRealEstateId" parameterType="int">
+		DELETE FROM
+			`comment`
+		WHERE
+			`realEstateId` = #{realEstateId}
+	</delete>
 	<select id="selectCommentCardListByRealEstateId" parameterType="int" resultType="com.myroom.comment.model.CommentCard">
 		SELECT 
 			b.`name`
