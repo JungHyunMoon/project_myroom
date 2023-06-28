@@ -1,6 +1,6 @@
 # project_myroom
 
-#AWS domain
+##AWS domain
 http://3.135.197.208:8080/myroom
 
 ## wireFrame
