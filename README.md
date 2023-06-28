@@ -1,5 +1,8 @@
 # project_myroom
 
+#AWS domain
+http://3.135.197.208:8080/myroom
+
 ## wireFrame
 https://www.figma.com/file/HZoYXenPrxhcRxYI4MYe3L/MyRoom?node-id=0%3A1&t=ghbLlSwI6uE4aODV-1
 
