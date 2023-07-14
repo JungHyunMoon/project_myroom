@@ -14,8 +14,12 @@
 - 프로젝트는 Spring Boot와 Mybatis, Jquery, Bootstrap을 사용하여 개발되었습니다.
 - AWS EC2 인스턴스를 사용하여 배포되었습니다.
 
-### AWS domain
-http://3.135.197.208:8080/myroom
+## 서비스 이용
+### #AWS domain
+- http://3.135.197.208:8080/myroom
+### Test ID
+- 일반유저(Id/password) : user/user
+- 중개사 (Id/password) : realtor_gangnam/realtor_gangnam
 
 ## 아키텍쳐
 - 전반적인 매물 정보는 직방 API를 파이썬으로 Crawling 하여 DB에 업로드 하여 좀 더 실제 서비스와 가깝게 Web을 설계해 보았습니다.
