@@ -31,8 +31,9 @@ http://3.135.197.208:8080/myroom
 ## Data Crawling
 - geohash map 형태로 나눠져 있는 데이터를 **크롤링** 하여 하단 이미지에 위치한 매물들을 확인 할 수 있었습니다. 각 geohash에 분류되어 있는 직방 API를 **request** 방식으로 호출하여 **pandas** 모듈로 DataFrame화 했습니다
 ![geohash](https://github.com/JungHyunMoon/project_myroom/assets/120004247/9e5144a3-8347-491d-b516-cb7252097e8f)
-크롤링 한 데이터 중 title에 해당하는 데이터는 형태소 분석을 통해 wordCloud  시각화를 진행하였고 결과물을 main화면에 노출시켰습니다.
+- 크롤링 한 데이터 중 title에 해당하는 데이터는 형태소 분석을 통해 wordCloud  시각화를 진행하였고 결과물을 main화면에 노출시켰습니다.
 ![main](https://github.com/JungHyunMoon/project_myroom/assets/120004247/6ea7367a-c0bd-4ecc-972d-c2bd5c2600a5)
+- 자세한 데이터 수집코드는 마크다운파일를 첨부하겠습니다
 [MoonProject.md](https://github.com/JungHyunMoon/project_myroom/files/10977262/MoonProject.md)
 
 ## 핵심 구현 기술 소개
