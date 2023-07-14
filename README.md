@@ -8,14 +8,12 @@
 - MyBatis JDBC연동
 - AWS EC2 인스턴스 배포
 
-## 주제 선정 이유 및 개요
+## 주제 선정 이유
 - 프롭테크(Proptech)에 평소 관심이 많았기 때문에 첫 Web 개발 프로젝트로 가장 관심이 있었던 분야를 주제로 선정하고자 하였습니다.
 - 본 프로젝트는 부동산 중개 웹사이트인 직방을 모티브로 하여 개발한 프로젝트로, 부동산 정보 검색 및 등록, 방문 예약을 제공합니다.
-- 프로젝트는 Spring Boot와 Mybatis, Jquery, Bootstrap을 사용하여 개발되었습니다.
-- AWS EC2 인스턴스를 사용하여 배포되었습니다.
 
 ## 서비스 이용
-### #AWS domain
+### AWS domain
 - http://3.135.197.208:8080/myroom
 ### Test ID
 - 일반유저(Id/password) : user/user
