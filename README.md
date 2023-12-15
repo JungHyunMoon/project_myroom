@@ -14,7 +14,7 @@
 
 ## 서비스 이용
 ### AWS domain
-- http://3.135.197.208:8080/myroom
+- ~~http://3.135.197.208:8080/myroom~~ (이용 불가능 상태)
 ### Test ID
 - 일반유저(Id/password) : user/user
 - 중개사 (Id/password) : realtor_gangnam/realtor_gangnam
