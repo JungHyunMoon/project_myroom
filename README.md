@@ -14,7 +14,7 @@
 
 ## 서비스 이용
 ### AWS domain
-- IP변경 이용 불가능( [서비스 링크](http://3.133.119.173:8080/myroom) )
+- [서비스 링크](http://3.133.119.173:8080/myroom)
 ### Test ID
 - 일반유저(Id/password) : user/user
 - 중개사 (Id/password) : realtor_gangnam/realtor_gangnam
