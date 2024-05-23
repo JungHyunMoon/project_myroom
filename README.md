@@ -12,13 +12,6 @@
 - MyBatis JDBC연동
 - AWS EC2 인스턴스 배포
 
-## 서비스 이용
-### AWS domain
-- [서비스 링크](http://3.133.119.173:8080/myroom)
-### Test ID
-- 일반유저(Id/password) : user/user
-- 중개사 (Id/password) : realtor_gangnam/realtor_gangnam
-
 ## 아키텍쳐
 - 전반적인 매물 정보는 직방 API를 파이썬으로 Crawling 하여 DB에 업로드 하여 좀 더 실제 서비스와 가깝게 Web을 설계해 보았습니다.
 ![architecture](https://github.com/JungHyunMoon/project_myroom/assets/120004247/cdf5507a-329b-483e-91fc-1989b2439e5e)
